@@ -67,16 +67,21 @@ function updateVariant(index) {
         </ul>
         <div
           v-for="(variant, index) in variants"
-          class="color-circle"
-          :style="{ backgroundColor: variant.color }"
+          class="w-12 h-12 mt-2 border-2 border-solid border-[#d8d8d8] rounded-[50%]"
+          :class="{
+            green: 'bg-[green]',
+            blue: 'bg-[blue]'
+          }[variant.color]"
           :key="variant.id"
           @mouseover="updateVariant(index)"
         >
         </div>
 
         <button
-          class="button"
-          :class="{ disabled: !inStock }"
+          class="w-40 h-16 m-8 text-lg leading-none text-white text-center rounded-[5px] btn-shading-bn"
+          :class="inStock ?
+            ['bg-[#39495c]', 'cursor-pointer'] :
+            ['bg-[#d8d8d8]', 'cursor-not-allowed']"
           :disabled="!inStock"
           @click="addToCart"
         >
@@ -88,36 +93,6 @@ function updateVariant(index) {
 </template>
 
 <style scoped>
-.product-info {
-  width: 100%;
-  margin-left: 10px;
-}
-
-.color-circle {
-  width: 50px;
-  height: 50px;
-  margin-top: 8px;
-  border: 2px solid #d8d8d8;
-  border-radius: 50%;
-}
-
-.button {
-  width: 160px;
-  height: 60px;
-  margin: 30px;
-  padding: 20px;
-  font-size: 18px;
-  color: white;
-  text-align: center;
-  border-radius: 5px;
-  box-shadow: inset 0 -0.6em 1em -0.35em rgba(0, 0, 0, 0.17),
-    inset 0 0.6em 2em -0.3em rgba(255, 255, 255, 0.15),
-    inset 0 0 0em 0.05em rgba(255, 255, 255, 0.12);
-
-  background-color: #39495c;
-  cursor: pointer;
-}
-
 .button.disabled {
   background-color: #d8d8d8;
   cursor: not-allowed;
