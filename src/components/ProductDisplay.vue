@@ -78,7 +78,7 @@ function updateVariant(index) {
         </div>
 
         <button
-          class="w-40 h-16 m-8 text-lg leading-none text-white text-center rounded-[5px] btn-shading-bn"
+          class="w-40 h-16 m-8 text-lg leading-none text-cloud text-center rounded-[5px] btn-shading-bn"
           :class="inStock ?
             ['bg-midnight', 'cursor-pointer'] :
             ['bg-mist', 'cursor-not-allowed']"
