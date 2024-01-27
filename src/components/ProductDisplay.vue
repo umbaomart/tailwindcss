@@ -2,6 +2,8 @@
 import { ref, computed } from 'vue'
 import socksBlueImage from '../assets/socks_blue.jpg'
 import socksGreenImage from '../assets/socks_green.jpg'
+import PrettyButton from './PrettyButton.vue';
+import ResponsiveWidth from './ResponsiveWidth.vue';
 
 const props = defineProps({
   premium: {
@@ -53,41 +55,40 @@ function updateVariant(index) {
 <template>
   <div class="p-4">
     <div class="flex flex-row flex-wrap">
-      <div class="w-[100%] md:w-[50%]">
+      <ResponsiveWidth>
         <img class="w-[70%] m40px p-4 [border:2px_solid_#d8d8d8]"
-          v-bind:src="image">
-      </div>
-      <div class="w-[100%] md:w-[50%] ml-3 md:ml-0">
-        <h1>{{ title }}</h1>
-        <p v-if="inStock">In Stock</p>
-        <p v-else>Out of Stock</p>
-        <p>Shipping: {{ shipping }}</p>
-        <ul>
-          <li v-for="detail in details">{{ detail }}</li>
-        </ul>
-        <div
-          v-for="(variant, index) in variants"
-          class="w-12 h-12 mt-2 mist-border-2 rounded-[50%]"
-          :class="{
-            green: 'bg-[green]',
-            blue: 'bg-[blue]'
-          }[variant.color]"
-          :key="variant.id"
-          @mouseover="updateVariant(index)"
-        >
-        </div>
+            v-bind:src="image">
+      </ResponsiveWidth>
+        <div class="w-[100%] md:w-[50%] ml-3 md:ml-0">
+          <h1>{{ title }}</h1>
+          <p v-if="inStock">In Stock</p>
+          <p v-else>Out of Stock</p>
+          <p>Shipping: {{ shipping }}</p>
+          <ul>
+            <li v-for="detail in details">{{ detail }}</li>
+          </ul>
+          <div
+            v-for="(variant, index) in variants"
+            class="w-12 h-12 mt-2 mist-border-2 rounded-[50%]"
+            :class="{
+              green: 'bg-[green]',
+              blue: 'bg-[blue]'
+            }[variant.color]"
+            :key="variant.id"
+            @mouseover="updateVariant(index)"
+          >
+          </div>
 
-        <button
-          class="w-40 h-16 m-8 text-lg leading-none text-cloud text-center rounded-[5px] btn-shading-bn"
-          :class="inStock ?
-            ['bg-midnight', 'cursor-pointer'] :
-            ['bg-mist', 'cursor-not-allowed']"
-          :disabled="!inStock"
-          @click="addToCart"
-        >
-          Add to Cart
-        </button>
-      </div>
+          <PrettyButton
+            :isActive="inStock"
+            @click="addToCart"
+          >
+            Add to Cart
+          </PrettyButton>
+
+        </div>
+      <ResponsiveWidth>
+      </ResponsiveWidth>
     </div>
   </div>
 </template>
