@@ -4,14 +4,18 @@ module.exports = {
     "./src/**/*.vue",
   ],
   theme: {
-    extend: {
-      colors: {
-        ocean: '#16c0b0',
-        leaf: '#84cfba',
-        mist: '#d8d8d8',
-        midnight: '#39495c'
-      }
+    colors: {
+      ocean: '#16c0b0',
+      leaf: '#84cfba',
+      mist: '#d8d8d8',
+      midnight: '#39495c',
+      cloud: '#ffffff',
     },
+    screens: {
+      // sm: '660px',
+      md: '860px',
+      // lg: '1060px'
+    }
   },
   plugins: [],
 }
